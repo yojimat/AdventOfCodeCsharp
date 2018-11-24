@@ -10,12 +10,12 @@ namespace AdventOfCode
 
             Console.WriteLine("Projeto dedicado a resolução dos exercícios encontrados no Advent of Code\n(https://adventofcode.com/)\nEscreva o código referente a determinado projeto pra acessar os programas.\n");
 
-
             do
             {
                 Console.WriteLine("\nLista de Programas:\n");
                 Console.WriteLine("-Day2: '2'");
                 Console.WriteLine("-Day3: '3'");
+                Console.WriteLine("-Day4: '4'");
                 Console.Write("\nCódigo:");
                 console = Console.ReadLine();
 
@@ -26,6 +26,9 @@ namespace AdventOfCode
                         break;
                     case "3":
                         AdventOfCode2015.Day3();
+                        break;
+                    case "4":
+                        AdventOfCode2015.Day4();
                         break;
                     default:
                         Console.WriteLine("Não encontrado.\n");

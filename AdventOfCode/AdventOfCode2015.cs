@@ -136,5 +136,43 @@ namespace AdventOfCode
             Console.Write("Aperte qualquer tecla para continuar.\n");
             Console.ReadKey(true);
         }
+
+        static public void Day4()
+        {
+
+            Console.WriteLine("\nPrograma Day 4:\n");
+            Console.Write("Aperte qualquer tecla para continuar.\n");
+            Console.ReadKey(true);
+            Console.WriteLine("Itenerando secretKey para 5 zeros...\n");
+
+            string cincozeros, secretKeyModificado, secretKey = "bgvyzdsv";
+            long valorAtual = 1;
+
+            do
+            {
+
+                secretKeyModificado = FunçõesHelpers.InsertNumeroSecretKey(secretKey, valorAtual);
+                cincozeros = FunçõesHelpers.HexaHashMD5(secretKeyModificado).Substring(0, 5);
+                valorAtual++;
+
+            } while (cincozeros != "00000");
+
+            Console.WriteLine("A secretKey é: {0}\n", secretKey);
+            Console.WriteLine("A secretKey modificada para 5 zeros inicias no hash é: {0}\n", secretKeyModificado);
+            Console.WriteLine("Itenerando secretKey para 6 zeros...\n");
+            valorAtual = 1;
+
+            do
+            {
+
+                secretKeyModificado = FunçõesHelpers.InsertNumeroSecretKey(secretKey, valorAtual);
+                cincozeros = FunçõesHelpers.HexaHashMD5(secretKeyModificado).Substring(0, 6);
+                valorAtual++;
+            } while (cincozeros != "000000");
+
+            Console.WriteLine("A secretKey modificada para 6 zeros inicias no hash é: {0}\n", secretKeyModificado);
+            Console.Write("Aperte qualquer tecla para continuar.\n");
+            Console.ReadKey(true);
+        }
     }
 }

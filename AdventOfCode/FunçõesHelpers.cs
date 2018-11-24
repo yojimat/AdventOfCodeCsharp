@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace AdventOfCode
 {
@@ -61,6 +63,41 @@ namespace AdventOfCode
             }
 
             return pares;
+        }
+
+        static public string InsertNumeroSecretKey(string secretKey, long valorAtual)
+        {
+            int count = 0;
+            string valorAtualString;
+
+            StringBuilder novoHash = new StringBuilder();
+            foreach (char letra in secretKey)
+            {
+                novoHash.Append(letra);
+                if (++count == 8)
+                {
+                    valorAtualString = valorAtual.ToString();
+                    novoHash.Insert(8, valorAtualString, 1);
+                }
+            }
+
+            return novoHash.ToString();
+        }
+
+        static public string HexaHashMD5(string secretKeyModificado)
+        {
+            // Use input string to calculate MD5 hash
+            byte[] inputBytes = Encoding.ASCII.GetBytes(secretKeyModificado);
+            byte[] hashBytes = MD5.Create().ComputeHash(inputBytes);
+
+            // Convert the byte array to hexadecimal string
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < hashBytes.Length; i++)
+            {
+                sb.Append(hashBytes[i].ToString("X2"));
+            }
+
+            return sb.ToString();
         }
     }
 }
