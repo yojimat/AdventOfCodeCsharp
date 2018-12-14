@@ -23,11 +23,11 @@ namespace AdventOfCode
                 largura = int.Parse(lwh[0]);
                 comprimento = int.Parse(lwh[1]);
                 altura = int.Parse(lwh[2]);
-                areaPresente = FunçõesHelpers.AreaPapelPlus(largura, comprimento, altura);
+                areaPresente = FunctionHelpers.AreaPapelPlus(largura, comprimento, altura);
                 areaTodosPresentes += areaPresente;
 
                 //Parte 2
-                areaRibbon = FunçõesHelpers.QntRibbon(largura, comprimento, altura);
+                areaRibbon = FunctionHelpers.QntRibbon(largura, comprimento, altura);
                 areasRibbons += areaRibbon;
             }
 
@@ -46,7 +46,7 @@ namespace AdventOfCode
 
             int x = 0, y = 0, presentesUnicos = 0;
             string coordenadas = File.ReadAllText(@".\inputs2015\inputsParaDay3.txt");
-            string[] paresUnicos = FunçõesHelpers.ListaCoordenadas(coordenadas, x, y).Distinct().ToArray();
+            string[] paresUnicos = FunctionHelpers.ListaCoordenadas(coordenadas, x, y).Distinct().ToArray();
 
             presentesUnicos += paresUnicos.Length;
 
@@ -151,8 +151,8 @@ namespace AdventOfCode
             do
             {
 
-                secretKeyModificado = FunçõesHelpers.InsertNumeroSecretKey(secretKey, valorAtual);
-                cincozeros = FunçõesHelpers.HexaHashMD5(secretKeyModificado).Substring(0, 5);
+                secretKeyModificado = FunctionHelpers.InsertNumeroSecretKey(secretKey, valorAtual);
+                cincozeros = FunctionHelpers.HexaHashMD5(secretKeyModificado).Substring(0, 5);
                 valorAtual++;
 
             } while (cincozeros != "00000");
@@ -165,12 +165,71 @@ namespace AdventOfCode
             do
             {
 
-                secretKeyModificado = FunçõesHelpers.InsertNumeroSecretKey(secretKey, valorAtual);
-                cincozeros = FunçõesHelpers.HexaHashMD5(secretKeyModificado).Substring(0, 6);
+                secretKeyModificado = FunctionHelpers.InsertNumeroSecretKey(secretKey, valorAtual);
+                cincozeros = FunctionHelpers.HexaHashMD5(secretKeyModificado).Substring(0, 6);
                 valorAtual++;
             } while (cincozeros != "000000");
 
             Console.WriteLine("A secretKey modificada para 6 zeros inicias no hash é: {0}\n", secretKeyModificado);
+            Console.Write("Aperte qualquer tecla para continuar.\n");
+            Console.ReadKey(true);
+        }
+
+        static public void Day5()
+        {
+            Console.WriteLine("\nPrograma Day 5:\n");
+            Console.WriteLine("Começando:");
+            Console.Write("Aperte qualquer tecla para continuar.\n");
+            Console.ReadKey(true);
+
+            string[] input = File.ReadAllLines("./inputs2015/inputsParaDay5.txt");
+            int nicestrings = 0;
+
+            foreach (string line in input)
+            {
+                if (line.Contains("ab") || line.Contains("cd") || line.Contains("pq") || line.Contains("xy"))
+                {
+                    Console.WriteLine("Bad string");
+                }
+                else if (FunctionHelpers.verificarvogais(line))
+                {
+                    Console.WriteLine("Good, Tem mais de 3 vogais.");
+                    if (FunctionHelpers.verificarRepeticao(line))
+                    {
+                        Console.WriteLine("Nice string!");
+                        nicestrings++;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Not so good string T-T");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Bad string");
+                }
+            }
+
+            Console.WriteLine("O input tem {0} nice strings\n", nicestrings);
+            Console.WriteLine("Segunda Parte: Mudanças das regras de nice string.");
+            Console.ReadKey();
+
+            nicestrings = 0;
+
+            foreach (string line in input)
+            {
+                if (FunctionHelpers.verificarDuplaRepeticao(line) && FunctionHelpers.verificarRepeticaoNasBeiras(line))
+                {
+                    Console.WriteLine("Good.");
+                    nicestrings++;
+                }
+                else
+                {
+                    Console.WriteLine("Bad string");
+                }
+            }
+
+            Console.WriteLine("O input novo tem {0} nice strings\n", nicestrings);
             Console.Write("Aperte qualquer tecla para continuar.\n");
             Console.ReadKey(true);
         }

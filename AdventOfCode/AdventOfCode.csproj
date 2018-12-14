@@ -59,7 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdventOfCode2015.cs" />
-    <Compile Include="FunçõesHelpers.cs" />
+    <Compile Include="FunctionHelpers.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="inputs2015\inputsParaDay2.txt" />
     <Content Include="inputs2015\inputsParaDay3.txt" />
+    <Content Include="inputs2015\inputsParaDay5.txt" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
