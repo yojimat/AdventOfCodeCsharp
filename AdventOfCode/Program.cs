@@ -17,6 +17,8 @@ namespace AdventOfCode
                 Console.WriteLine("-Day3: '3'");
                 Console.WriteLine("-Day4: '4'");
                 Console.WriteLine("-Day5: '5'");
+                Console.WriteLine("-Day6: '6'");
+                Console.WriteLine("-Day7: '7'");
                 Console.Write("\nCódigo:");
                 console = Console.ReadLine();
 
@@ -33,6 +35,12 @@ namespace AdventOfCode
                         break;
                     case "5":
                         AdventOfCode2015.Day5();
+                        break;
+                    case "6":
+                        AdventOfCode2015.Day6();
+                        break;
+                    case "7":
+                        AdventOfCode2015.Day7();
                         break;
                     default:
                         Console.WriteLine("Não encontrado.\n");

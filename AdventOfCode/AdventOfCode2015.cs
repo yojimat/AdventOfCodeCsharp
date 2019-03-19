@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace AdventOfCode
 {
@@ -232,6 +234,410 @@ namespace AdventOfCode
             Console.WriteLine("O input novo tem {0} nice strings\n", nicestrings);
             Console.Write("Aperte qualquer tecla para continuar.\n");
             Console.ReadKey(true);
+        }
+
+        static public void Day6()
+        {
+            Console.WriteLine("\nPrograma Day 6:\n");
+            Console.WriteLine("Começando:");
+            Console.Write("Aperte qualquer tecla para continuar.\n");
+            Console.ReadKey();
+
+            string[] comandos = File.ReadAllLines("./inputs2015/inputsParaDay6.txt");
+            int luzesAcesas = 0;
+            int[,] grid = new int[1000, 1000];
+
+            foreach (string cmd in comandos)
+            {
+                if (cmd.Contains("turn on"))
+                {
+                    //string resultString = string.Join(",", Regex.Matches(linha, @"\d+").OfType<Match>().Select(m => m.Value));
+                    int l1 = 0, l2 = 0, c1 = 0, c2 = 0, i = 0;
+
+                    foreach (var numeros in Regex.Matches(cmd, @"\d+").OfType<Match>())
+                    {
+
+                        switch (i)
+                        {
+                            case 0:
+                                l1 = int.Parse(numeros.Value);
+                                break;
+                            case 1:
+                                c1 = int.Parse(numeros.Value);
+                                break;
+                            case 2:
+                                l2 = int.Parse(numeros.Value);
+                                break;
+                            case 3:
+                                c2 = int.Parse(numeros.Value);
+                                break;
+                            default:
+                                break;
+                        }
+                        i++;
+                    }
+
+                    for (int linhas = 0; linhas <= 999; linhas++)
+                    {
+                        for (int colunas = 0; colunas <= 999; colunas++)
+                        {
+                            if (linhas >= l1 && linhas <= l2 && colunas >= c1 && colunas <= c2)
+                            {
+                                grid[linhas, colunas] = 1;
+                            }
+                        }
+                    }
+                }
+                else if (cmd.Contains("turn off"))
+                {
+                    int l1 = 0, l2 = 0, c1 = 0, c2 = 0, i = 0;
+
+                    foreach (var numeros in Regex.Matches(cmd, @"\d+").OfType<Match>())
+                    {
+                        switch (i)
+                        {
+                            case 0:
+                                l1 = int.Parse(numeros.Value);
+                                break;
+                            case 1:
+                                c1 = int.Parse(numeros.Value);
+                                break;
+                            case 2:
+                                l2 = int.Parse(numeros.Value);
+                                break;
+                            case 3:
+                                c2 = int.Parse(numeros.Value);
+                                break;
+                            default:
+                                break;
+                        }
+                        i++;
+                    }
+
+                    for (int linhas = 0; linhas <= 999; linhas++)
+                    {
+                        for (int colunas = 0; colunas <= 999; colunas++)
+                        {
+                            if (linhas >= l1 && linhas <= l2 && colunas >= c1 && colunas <= c2)
+                            {
+                                grid[linhas, colunas] = 0;
+                            }
+                        }
+                    }
+                }
+                else if (cmd.Contains("toggle"))
+                {
+                    int l1 = 0, l2 = 0, c1 = 0, c2 = 0, i = 0;
+
+                    foreach (var numeros in Regex.Matches(cmd, @"\d+").OfType<Match>())
+                    {
+
+                        switch (i)
+                        {
+                            case 0:
+                                l1 = int.Parse(numeros.Value);
+                                break;
+                            case 1:
+                                c1 = int.Parse(numeros.Value);
+                                break;
+                            case 2:
+                                l2 = int.Parse(numeros.Value);
+                                break;
+                            case 3:
+                                c2 = int.Parse(numeros.Value);
+                                break;
+                            default:
+                                break;
+                        }
+                        i++;
+                    }
+
+                    for (int linhas = 0; linhas <= 999; linhas++)
+                    {
+                        for (int colunas = 0; colunas <= 999; colunas++)
+                        {
+                            if (linhas >= l1 && linhas <= l2 && colunas >= c1 && colunas <= c2)
+                            {
+                                if (grid[linhas, colunas] == 0)
+                                {
+                                    grid[linhas, colunas] = 1;
+                                }
+                                else if (grid[linhas, colunas] == 1)
+                                {
+                                    grid[linhas, colunas] = 0;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            foreach (int luz in grid)
+            {
+                if (luz == 1)
+                {
+                    luzesAcesas++;
+                    Console.WriteLine("Acendeu");
+                }
+            }
+
+            Console.WriteLine("A quantidade de luzes que ficaram acesas depois dos comandos foi:{0}", luzesAcesas);
+            Console.WriteLine("Segunda Parte do Desafio: Brilho das luzes.");
+            Console.ReadKey();
+
+            int[,] gridBrilho = new int[1000, 1000];
+            int brilhoTotal = 0;
+
+            foreach (string cmd in comandos)
+            {
+                if (cmd.Contains("turn on"))
+                {
+                    //string resultString = string.Join(",", Regex.Matches(linha, @"\d+").OfType<Match>().Select(m => m.Value));
+                    int l1 = 0, l2 = 0, c1 = 0, c2 = 0, i = 0;
+
+                    foreach (var numeros in Regex.Matches(cmd, @"\d+").OfType<Match>())
+                    {
+                        switch (i)
+                        {
+                            case 0:
+                                l1 = int.Parse(numeros.Value);
+                                break;
+                            case 1:
+                                c1 = int.Parse(numeros.Value);
+                                break;
+                            case 2:
+                                l2 = int.Parse(numeros.Value);
+                                break;
+                            case 3:
+                                c2 = int.Parse(numeros.Value);
+                                break;
+                            default:
+                                break;
+                        }
+                        i++;
+                    }
+
+                    for (int linhas = 0; linhas <= 999; linhas++)
+                    {
+                        for (int colunas = 0; colunas <= 999; colunas++)
+                        {
+                            if (linhas >= l1 && linhas <= l2 && colunas >= c1 && colunas <= c2)
+                            {
+                                gridBrilho[linhas, colunas] += 1;
+                            }
+                        }
+                    }
+                }
+                else if (cmd.Contains("turn off"))
+                {
+                    int l1 = 0, l2 = 0, c1 = 0, c2 = 0, i = 0;
+
+                    foreach (var numeros in Regex.Matches(cmd, @"\d+").OfType<Match>())
+                    {
+                        switch (i)
+                        {
+                            case 0:
+                                l1 = int.Parse(numeros.Value);
+                                break;
+                            case 1:
+                                c1 = int.Parse(numeros.Value);
+                                break;
+                            case 2:
+                                l2 = int.Parse(numeros.Value);
+                                break;
+                            case 3:
+                                c2 = int.Parse(numeros.Value);
+                                break;
+                            default:
+                                break;
+                        }
+                        i++;
+                    }
+
+                    for (int linhas = 0; linhas <= 999; linhas++)
+                    {
+                        for (int colunas = 0; colunas <= 999; colunas++)
+                        {
+                            if (linhas >= l1 && linhas <= l2 && colunas >= c1 && colunas <= c2)
+                            {
+                                if (gridBrilho[linhas, colunas] > 0)
+                                {
+                                    gridBrilho[linhas, colunas] -= 1;
+                                }
+                            }
+                        }
+                    }
+                }
+                else if (cmd.Contains("toggle"))
+                {
+                    int l1 = 0, l2 = 0, c1 = 0, c2 = 0, i = 0;
+
+                    foreach (var numeros in Regex.Matches(cmd, @"\d+").OfType<Match>())
+                    {
+
+                        switch (i)
+                        {
+                            case 0:
+                                l1 = int.Parse(numeros.Value);
+                                break;
+                            case 1:
+                                c1 = int.Parse(numeros.Value);
+                                break;
+                            case 2:
+                                l2 = int.Parse(numeros.Value);
+                                break;
+                            case 3:
+                                c2 = int.Parse(numeros.Value);
+                                break;
+                            default:
+                                break;
+                        }
+                        i++;
+                    }
+
+                    for (int linhas = 0; linhas <= 999; linhas++)
+                    {
+                        for (int colunas = 0; colunas <= 999; colunas++)
+                        {
+                            if (linhas >= l1 && linhas <= l2 && colunas >= c1 && colunas <= c2)
+                            {
+                                gridBrilho[linhas, colunas] += 2;
+                            }
+                        }
+                    }
+                }
+                Console.WriteLine("Brilho Alterado.");
+            }
+
+            foreach (int brilho in gridBrilho)
+            {
+                brilhoTotal += brilho;
+            }
+
+            Console.WriteLine("O brilho total ficou em: {0}\n", brilhoTotal);
+            Console.Write("Aperte qualquer tecla para continuar.\n");
+            Console.ReadKey();
+        }
+
+        static public void Day7()
+        {
+            Console.WriteLine("\nPrograma Day 7:\n");
+            Console.WriteLine("Começando: ");
+            Console.Write("Aperte qualquer tecla para continuar.\n");
+            Console.ReadKey();
+
+            string[] cmd = File.ReadAllLines("./inputs2015/inputsParaDay7.txt");
+
+            IDictionary<string, Func<ushort>> listaChaves = new Dictionary<string, Func<ushort>>();
+            IDictionary<string, ushort> valores = new Dictionary<string, ushort>();
+
+            foreach (string comando in cmd)
+            {
+
+                string[] partes = comando.Split(' ');
+                string output = partes[partes.Length - 1];
+
+                switch (partes.Length)
+                {
+                    case 3:
+                        ushort val;
+                        if (ushort.TryParse(partes[0], out val))
+                        {
+                            listaChaves.Add(output, () => val);
+                            valores.Add(output, val);
+                        }
+                        else
+                        {
+                            listaChaves.Add(output, () => {
+                                if (valores.ContainsKey(output))
+                                    return valores[output];
+                                else
+                                {
+                                    ushort res = listaChaves[partes[0]].Invoke();
+                                    valores.Add(output, res);
+                                    return res;
+                                }
+                            });
+                        }
+                        break;
+                    case 4:
+                        listaChaves.Add(output, () => (ushort)(~listaChaves[partes[1]].Invoke()));
+                        break;
+                    case 5:
+                        switch (partes[1])
+                        {
+                            case "AND":
+                                listaChaves.Add(output, () =>
+                                {
+                                    if (valores.ContainsKey(output))
+                                        return valores[output];
+                                    else
+                                    {
+                                        ushort res = (ushort)((ushort.TryParse(partes[0], out val) ? val : listaChaves[partes[0]].Invoke()) & listaChaves[partes[2]].Invoke());
+                                        valores.Add(output, res);
+                                        return res;
+                                    }
+                                });
+                                break;
+                            case "OR":
+                                listaChaves.Add(output, () =>
+                                {
+                                    if (valores.ContainsKey(output))
+                                        return valores[output];
+                                    else
+                                    {
+                                        ushort res = (ushort)((ushort.TryParse(partes[0], out val) ? val : listaChaves[partes[0]].Invoke()) | listaChaves[partes[2]].Invoke());
+                                        valores.Add(output, res);
+                                        return res;
+                                    }
+                                });
+                                break;
+                            case "LSHIFT":
+                                listaChaves.Add(output, () =>
+                                {
+                                    if (valores.ContainsKey(output))
+                                        return valores[output];
+                                    else
+                                    {
+                                        ushort res = (ushort)(listaChaves[partes[0]].Invoke() << int.Parse(partes[2]));
+                                        valores.Add(output, res);
+                                        return res;
+                                    }
+                                });
+                                break;
+                            case "RSHIFT":
+                                listaChaves.Add(output, () =>
+                                {
+                                    if (valores.ContainsKey(output))
+                                        return valores[output];
+                                    else
+                                    {
+                                        ushort res = (ushort)(listaChaves[partes[0]].Invoke() >> int.Parse(partes[2]));
+                                        valores.Add(output, res);
+                                        return res;
+                                    }
+                                });
+                                break;
+                        }
+                        break;
+                }
+            }
+
+            Console.WriteLine("Parte 1");
+            Console.WriteLine("Sinal/Output do fio A é:");
+            Console.WriteLine(listaChaves["a"].Invoke());
+
+            ushort outputA = listaChaves["a"].Invoke();
+            listaChaves["b"] = () => outputA;
+            valores.Clear();
+            valores["b"] = outputA;
+
+            Console.WriteLine("Parte 2");
+            Console.WriteLine("Sinal/Output do fio A, depois de tudo resetado, e B com o valor anterior de A é:");
+            Console.WriteLine(listaChaves["a"].Invoke());
+            Console.WriteLine("Depois de vários dias tentando fazer, sem resolução, dedico esse resposta no git para o usuario JeffJankowski(https://www.reddit.com/user/JeffJankowski) do reddit, obrigado pela esclarecimento!!\n");
+            Console.Write("Aperte qualquer tecla para continuar.\n");
+            Console.ReadKey();
         }
     }
 }

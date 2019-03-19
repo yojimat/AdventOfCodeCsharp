@@ -67,6 +67,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="inputs2015\inputsParaDay7.txt" />
+    <Content Include="inputs2015\inputsParaDay6.txt" />
     <Content Include="inputs2015\inputsParaDay2.txt" />
     <Content Include="inputs2015\inputsParaDay3.txt" />
     <Content Include="inputs2015\inputsParaDay5.txt" />
