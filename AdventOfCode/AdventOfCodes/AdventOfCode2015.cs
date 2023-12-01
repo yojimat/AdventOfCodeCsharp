@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace AdventOfCode
+namespace AdventOfCode.AdventOfCodes
 {
     class AdventOfCode2015
     {
@@ -14,7 +14,7 @@ namespace AdventOfCode
             Console.Write("Aperte qualquer tecla para continuar.\n");
             Console.ReadKey(true);
 
-            int largura=0, comprimento=0, altura=0, areaPresente=0,areaTodosPresentes=0, areaRibbon=0, areasRibbons=0;
+            int largura = 0, comprimento = 0, altura = 0, areaPresente = 0, areaTodosPresentes = 0, areaRibbon = 0, areasRibbons = 0;
             string[] medidas = File.ReadAllLines(@".\inputs2015\inputsParaDay2.txt");
 
             foreach (string medida in medidas)
@@ -548,7 +548,8 @@ namespace AdventOfCode
                         }
                         else
                         {
-                            listaChaves.Add(output, () => {
+                            listaChaves.Add(output, () =>
+                            {
                                 if (valores.ContainsKey(output))
                                     return valores[output];
                                 else
@@ -561,7 +562,7 @@ namespace AdventOfCode
                         }
                         break;
                     case 4:
-                        listaChaves.Add(output, () => (ushort)(~listaChaves[partes[1]].Invoke()));
+                        listaChaves.Add(output, () => (ushort)~listaChaves[partes[1]].Invoke());
                         break;
                     case 5:
                         switch (partes[1])

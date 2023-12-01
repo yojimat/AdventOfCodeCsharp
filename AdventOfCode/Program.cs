@@ -1,4 +1,5 @@
 ﻿using System;
+using AdventOfCode.AdventOfCodes;
 
 namespace AdventOfCode
 {
@@ -6,21 +7,14 @@ namespace AdventOfCode
     {
         static void Main(string[] args)
         {
-            string console = "";
-
             Console.WriteLine("Projeto dedicado a resolução dos exercícios encontrados no Advent of Code\n(https://adventofcode.com/)\nEscreva o código referente a determinado projeto pra acessar os programas.\n");
 
             do
             {
-                Console.WriteLine("\nLista de Programas:\n");
-                Console.WriteLine("-Day2: '2'");
-                Console.WriteLine("-Day3: '3'");
-                Console.WriteLine("-Day4: '4'");
-                Console.WriteLine("-Day5: '5'");
-                Console.WriteLine("-Day6: '6'");
-                Console.WriteLine("-Day7: '7'");
+                Console.WriteLine("\nLista de Programas de 2015:\n");
+                Console.WriteLine("-Day X: 'x'");
                 Console.Write("\nCódigo:");
-                console = Console.ReadLine();
+                var console = Console.ReadLine();
 
                 switch (console)
                 {
