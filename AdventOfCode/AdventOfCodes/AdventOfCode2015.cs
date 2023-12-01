@@ -6,9 +6,13 @@ using System.Text.RegularExpressions;
 
 namespace AdventOfCode.AdventOfCodes
 {
-    class AdventOfCode2015
+    public class AdventOfCode2015 : IAdventOfCode
     {
-        static public void Day2()
+        public void Day1()
+        {
+            throw new NotImplementedException("Esse dia não foi feito");
+        }
+        public void Day2()
         {
             Console.WriteLine("\nPrograma Day 2:\n");
             Console.Write("Aperte qualquer tecla para continuar.\n");
@@ -40,7 +44,7 @@ namespace AdventOfCode.AdventOfCodes
             Console.ReadKey(true);
         }
 
-        static public void Day3()
+        public void Day3()
         {
             Console.WriteLine("\nPrograma Day 3:\n");
             Console.Write("Aperte qualquer tecla para continuar.\n");
@@ -139,7 +143,7 @@ namespace AdventOfCode.AdventOfCodes
             Console.ReadKey(true);
         }
 
-        static public void Day4()
+        public void Day4()
         {
 
             Console.WriteLine("\nPrograma Day 4:\n");
@@ -177,7 +181,7 @@ namespace AdventOfCode.AdventOfCodes
             Console.ReadKey(true);
         }
 
-        static public void Day5()
+        public void Day5()
         {
             Console.WriteLine("\nPrograma Day 5:\n");
             Console.WriteLine("Começando:");
@@ -236,7 +240,7 @@ namespace AdventOfCode.AdventOfCodes
             Console.ReadKey(true);
         }
 
-        static public void Day6()
+        public void Day6()
         {
             Console.WriteLine("\nPrograma Day 6:\n");
             Console.WriteLine("Começando:");
@@ -519,7 +523,7 @@ namespace AdventOfCode.AdventOfCodes
             Console.ReadKey();
         }
 
-        static public void Day7()
+        public void Day7()
         {
             Console.WriteLine("\nPrograma Day 7:\n");
             Console.WriteLine("Começando: ");
