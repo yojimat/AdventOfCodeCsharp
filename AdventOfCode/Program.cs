@@ -1,9 +1,12 @@
-﻿namespace AdventOfCode;
+﻿using AdventOfCode.AdventOfCodes.AdventOfCode2023.Days;
 
-class Program
+namespace AdventOfCode;
+
+public class Program
 {
     static void Main(string[] args)
     {
-        AdventChooser.Start();
+        //AdventChooser.Start();
+        _2023Day1.ExecuteProgram();
     }
 }
