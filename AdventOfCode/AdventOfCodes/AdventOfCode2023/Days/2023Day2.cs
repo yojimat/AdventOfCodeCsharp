@@ -16,6 +16,7 @@ public static partial class _2023Day2
     };
 
     private static int _sumOfValidGames;
+    private static int _sumOfPowersOfGames;
 
     public static void ExecuteProgram()
     {
@@ -27,6 +28,7 @@ public static partial class _2023Day2
             Solution(line);
         }
         Console.WriteLine($"The sum of the valid games is {_sumOfValidGames}");
+        Console.WriteLine($"The sum of the power of numbers from the games is {_sumOfPowersOfGames}");
     }
 
     private static void Solution(string line)
@@ -35,22 +37,42 @@ public static partial class _2023Day2
         var gameIndex = splitAtTwoDots[0].Trim().Split(" ").Last();
         var setOfCubes = splitAtTwoDots[1].Trim().Split(';');
         var validGame = true;
+        var red = int.MinValue;
+        var green = int.MinValue;
+        var blue = int.MinValue;
 
         foreach (var set in setOfCubes)
         {
             var matches = FindNumberAndColors().Matches(set);
-
             foreach (var match in matches.Cast<Match>())
             {
                 var color = match.Groups[2].Value;
                 var number = int.Parse(match.Groups[1].Value);
+
+                switch (color)
+                {
+                    case "red":
+                        if (red > number) continue;
+                        red = number;
+                        break;
+                    case "green":
+                        if (green > number) continue;
+                        green = number;
+                        break;
+                    case "blue":
+                        if (blue > number) continue;
+                        blue = number;
+                        break;
+                }
+
                 if (Cubes[color] >= number) continue;
                 Console.WriteLine($"Game {gameIndex} is impossible");
                 validGame = false;
             }
-
         }
 
+        var powerOfColors = red*blue*green;
+        _sumOfPowersOfGames += powerOfColors;
         if (validGame) _sumOfValidGames += int.Parse(gameIndex);
     }
 
