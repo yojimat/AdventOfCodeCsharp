@@ -89,5 +89,5 @@ public static partial class _2023Day1
     }
 
     [GeneratedRegex("(?=(one|two|three|four|five|six|seven|eight|nine))", RegexOptions.IgnoreCase | RegexOptions.Singleline)]
-    private static partial Regex TransformWordNumberRegex();
+    public static partial Regex TransformWordNumberRegex();
 }

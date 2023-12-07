@@ -6,6 +6,7 @@ public class Program
 {
     static void Main(string[] args)
     {
-        AdventChooser.Start();
+        //AdventChooser.Start();
+       _2023Day2.ExecuteProgram();
     }
 }

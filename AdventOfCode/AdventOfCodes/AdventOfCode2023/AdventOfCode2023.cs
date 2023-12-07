@@ -11,20 +11,10 @@ public class AdventOfCode2023 : IAdventOfCode
 
     public void Day2()
     {
-        throw new System.NotImplementedException();
+        _2023Day2.ExecuteProgram();
     }
 
-    public void Day7()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void Day6()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void Day5()
+    public void Day3()
     {
         throw new System.NotImplementedException();
     }
@@ -34,7 +24,17 @@ public class AdventOfCode2023 : IAdventOfCode
         throw new System.NotImplementedException();
     }
 
-    public void Day3()
+    public void Day5()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void Day6()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void Day7()
     {
         throw new System.NotImplementedException();
     }

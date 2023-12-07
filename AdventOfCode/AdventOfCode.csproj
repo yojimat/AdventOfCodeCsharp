@@ -50,4 +50,7 @@
   </ItemGroup>
   <PropertyGroup />
   <PropertyGroup />
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy &quot;$(ProjectDir)AdventOfCodes\AdventOfCode2023\Inputs\*.txt&quot; &quot;$(TargetDir)&quot; /Y" />
+  </Target>
 </Project>
