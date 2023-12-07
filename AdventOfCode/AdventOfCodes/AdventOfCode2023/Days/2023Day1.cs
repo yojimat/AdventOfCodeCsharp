@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -7,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace AdventOfCode.AdventOfCodes.AdventOfCode2023.Days;
 
-public static class _2023Day1
+public static partial class _2023Day1
 {
     public static void ExecuteProgram()
     {
@@ -23,36 +22,32 @@ public static class _2023Day1
         using (var client = new HttpClient())
         {
             // REMEMBER TO ADD THE YOUR COOKIE from the request header found in the developer tools of your browser
-            client.DefaultRequestHeaders.Add("Cookie",
-                "_ga=GA1.2.1838003819.1701448933; _gid=GA1.2.1637003096.1701448933; session=53616c7465645f5f43eeddb9f69dba63ecbb6006b084652f0f4ea11d462507bfefd39283fbc24889c6fc8974e3e571c9750a03980459492317690ee9f369a56a; _ga_MHSNPJKWC7=GS1.2.1701464582.2.0.1701464582.0.0.0");
+            client.DefaultRequestHeaders.Add("Cookie", "");
             buffer = client.GetByteArrayAsync(url).Result;
         }
 
         var text = Encoding.UTF8.GetString(buffer);
         var textSeparatedInLines = text.Split('\n');
-        var numbers = new List<int>();
+        var sum = 0;
 
         foreach (var line in textSeparatedInLines)
         {
             var textOfLine = line.Trim();
-            var digitsFound = textOfLine.Where(char.IsDigit);
-            var number = digitsFound.Aggregate("", (current, digit) => current + digit);
-            ////if (number.Length == 0)
-            //{
-                string pattern = @"^one|two|three|four|five|six|seven|eight|nine$";
-                foreach (Match match in Regex.Matches(line, pattern))
-                {
-                    var valueFound = match.Value;
-                }
-                //bool isNumber = int.TryParse(word, out number);
-                number = digitsFound.Aggregate("", (current, digit) => current + digit);
-            //}
 
-            if (number.Length == 0) continue;
+            // Second part of the puzzle function, with positive lookahead to find overlapping words like "twone"
+            var transformedLine = TransformWordNumberInNumbersRegex(textOfLine);
 
-            if (number.Length == 1)
+            var digitsFound = transformedLine.Where(char.IsDigit);
+            var wholeNumber = digitsFound.Aggregate("", (current, digit) => current + digit);
+            var number = wholeNumber;
+
+            switch (number.Length)
             {
-                number += number;
+                case 0:
+                    continue;
+                case 1:
+                    number += number;
+                    break;
             }
 
             if (number.Length > 2)
@@ -63,11 +58,36 @@ public static class _2023Day1
             }
 
             Console.WriteLine($"The number found is {number}");
-            numbers.Add(int.Parse(number));
+            sum += int.Parse(number);
         }
 
-        var sum = numbers.Aggregate(0, (current, number) => current + number);
         Console.WriteLine($"The sum of the items found is: {sum}");
     }
 
+    private static string TransformWordNumberInNumbersRegex(string line)
+    {
+        var result = TransformWordNumberRegex().Replace(line, match =>
+        {
+            // I think changing in some way the regex pattern this can be done better.
+            var number = match.Groups[1].Value switch
+            {
+                "one" => "1",
+                "two" => "2",
+                "three" => "3",
+                "four" => "4",
+                "five" => "5",
+                "six" => "6",
+                "seven" => "7",
+                "eight" => "8",
+                "nine" => "9",
+                _ => throw new Exception("Unexpected value")
+            };
+
+            return number;
+        });
+        return result;
+    }
+
+    [GeneratedRegex("(?=(one|two|three|four|five|six|seven|eight|nine))", RegexOptions.IgnoreCase | RegexOptions.Singleline)]
+    private static partial Regex TransformWordNumberRegex();
 }
