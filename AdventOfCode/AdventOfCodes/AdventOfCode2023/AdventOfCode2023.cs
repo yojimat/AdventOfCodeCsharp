@@ -16,7 +16,7 @@ public class AdventOfCode2023 : IAdventOfCode
 
     public void Day3()
     {
-        throw new System.NotImplementedException();
+        _2023Day3.ExecuteProgram();
     }
 
     public void Day4()

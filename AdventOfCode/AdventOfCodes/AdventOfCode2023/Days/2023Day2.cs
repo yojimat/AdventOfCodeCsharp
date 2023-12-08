@@ -21,7 +21,7 @@ public static partial class _2023Day2
     public static void ExecuteProgram()
     {
         Console.WriteLine("See the Challenge at https://adventofcode.com/2023/day/2");
-        var filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Day2Input.txt");
+        var filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "2023Day2Input.txt");
         var lines = File.ReadAllLines(filePath);
         foreach (var line in lines)
         {
